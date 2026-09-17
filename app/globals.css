@@ -11,7 +11,7 @@ button { font:inherit; }
 .hero { min-height:100svh; position:relative; overflow:hidden; background:#111; color:#fff; display:flex; align-items:flex-end; padding:7vw; }
 .hero-image,.closing-image,.selected-image,.memory-photo { position:absolute; inset:0; background-position:center; background-size:cover; }
 .hero-image { animation:heroZoom 14s ease-out forwards; }
-.group-photo { background-image:url('/group-photo.jpg'),url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=90'); }
+.group-photo { background-image:url('/group-photo.png'); background-position:center; background-size:cover; }
 .hero-vignette { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.18) 40%,rgba(0,0,0,.78)); }
 .hero-nav { position:absolute; z-index:2; top:28px; left:7vw; right:7vw; display:flex; justify-content:space-between; font-size:10px; letter-spacing:.14em; opacity:.9; }
 .hero-copy { position:relative; max-width:900px; z-index:1; animation:rise 1s .2s both cubic-bezier(.2,.8,.2,1); }
