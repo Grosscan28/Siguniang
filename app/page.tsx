@@ -1,83 +1,103 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  ArrowDown,
-  ArrowRight,
-  BedDouble,
-  Camera,
-  CircleDot,
-  CloudSnow,
-  TrainFront,
-  Wallet,
-} from "lucide-react";
+import { ArrowDown, ArrowRight, BedDouble, Camera, Check, CloudSnow, TrainFront, Wallet } from "lucide-react";
 
-const photos = [
+type Option = {
+  id: string;
+  title: string;
+  short: string;
+  subtitle: string;
+  route: string[];
+  hero: string;
+  accent: string;
+  days: [string, string, string][];
+  hotels: [string, string][];
+  budget: [string, string, string][];
+  total: string;
+};
+
+const options: Option[] = [
   {
-    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=88",
-    label: "SICHUAN / 01",
-    title: "Into the mountains",
-    text: "A trip that starts in Chengdu, then leaves the city behind for the high valleys of western Sichuan.",
+    id: "siguniang",
+    title: "Siguniang → Jiuzhaigou",
+    short: "SIGUNIANG",
+    subtitle: "Snow mountains, alpine valleys & turquoise lakes",
+    route: ["Chengdu", "Siguniang", "Huanglongjiuzhai", "Jiuzhaigou", "Chongqing", "Wulong"],
+    hero: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=90",
+    accent: "#d9ff63",
+    days: [
+      ["04 Mar", "Chengdu", "Arrival + Chunxi Road / Taikoo Li"],
+      ["05 Mar", "Siguniang", "Bus Chengdu → Siguniang + Shuangqiao Valley"],
+      ["06 Mar", "Siguniang → Chengdu", "Morning scenic + balik Chengdu"],
+      ["07 Mar", "Jiuzhaigou", "HSR + bus → Jiuzhaigou, scenic day"],
+      ["08 Mar", "Jiuzhaigou → Chongqing", "Bus + HSR → Chongqing"],
+      ["09 Mar", "Chongqing", "City day: Liziba, Hongyadong, Jiefangbei"],
+      ["10 Mar", "Wulong", "Day trip: Three Natural Bridges"],
+      ["11 Mar", "Chongqing", "City / food / night view"],
+      ["12 Mar", "Chengdu", "HSR back + final Chengdu"],
+      ["13 Mar", "Chengdu", "✈ 13:20 → Jakarta"],
+    ],
+    hotels: [["04", "Chengdu"], ["05", "Siguniang"], ["06", "Chengdu"], ["07", "Jiuzhaigou"], ["08", "Chongqing"], ["09", "Chongqing"], ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"]],
+    budget: [["✈", "Flight", "8.238.000"], ["🚆", "Bus + train + local", "2.800.000"], ["🎟", "Attraction", "1.150.000"], ["🏨", "Hotel", "1.250.000"], ["🍜", "Food", "1.350.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.500.000"]],
+    total: "Rp16.538.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=88",
-    label: "SIGUNIANG / 02",
-    title: "Four sisters, one valley",
-    text: "Siguniang is the first deep-nature chapter — snow, winding roads, and a slower rhythm.",
+    id: "bipenggou",
+    title: "Bipenggou → Jiuzhaigou",
+    short: "BIPENGGOU",
+    subtitle: "Glacial valley, snowy forests & the Jiuzhaigou lakes",
+    route: ["Chengdu", "Bipenggou", "Huanglongjiuzhai", "Jiuzhaigou", "Chongqing", "Wulong"],
+    hero: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=2400&q=90",
+    accent: "#9ee7ff",
+    days: [
+      ["04 Mar", "Chengdu", "Arrival + Chunxi Road / Taikoo Li"],
+      ["05 Mar", "Bipenggou", "Early bus → Bipenggou + scenic valley"],
+      ["06 Mar", "Bipenggou → Chengdu", "Morning scenic + balik Chengdu"],
+      ["07 Mar", "Jiuzhaigou", "HSR + bus → Jiuzhaigou, scenic day"],
+      ["08 Mar", "Jiuzhaigou → Chongqing", "Bus + HSR → Chongqing"],
+      ["09 Mar", "Chongqing", "City day + night views"],
+      ["10 Mar", "Wulong", "Day trip: Three Natural Bridges"],
+      ["11 Mar", "Chongqing", "City / food / free time"],
+      ["12 Mar", "Chengdu", "HSR back + final Chengdu"],
+      ["13 Mar", "Chengdu", "✈ 13:20 → Jakarta"],
+    ],
+    hotels: [["04", "Chengdu"], ["05", "Bipenggou / Lixian"], ["06", "Chengdu"], ["07", "Jiuzhaigou"], ["08", "Chongqing"], ["09", "Chongqing"], ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"]],
+    budget: [["✈", "Flight", "8.238.000"], ["🚆", "Bus + train + local", "2.710.000"], ["🎟", "Attraction", "1.060.000"], ["🏨", "Hotel", "1.300.000"], ["🍜", "Food", "1.350.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.500.000"]],
+    total: "Rp16.408.000",
   },
   {
-    src: "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=2200&q=88",
-    label: "JIUZHAIGOU / 03",
-    title: "Turquoise after snow",
-    text: "Then north to Jiuzhaigou: lakes, forests and winter colour, experienced mostly from the scenic shuttle and boardwalks.",
+    id: "yading",
+    title: "Daocheng Yading",
+    short: "DAOCHENG YADING",
+    subtitle: "High-altitude valleys, snow peaks & a slower western Sichuan road trip",
+    route: ["Chengdu", "Kangding", "Xinduqiao", "Litang", "Daocheng", "Yading", "Chongqing"],
+    hero: "https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=2400&q=90",
+    accent: "#ffc96b",
+    days: [
+      ["04 Mar", "Chengdu", "Arrival + city night"],
+      ["05 Mar", "Kangding", "Long-distance bus Chengdu → Kangding"],
+      ["06 Mar", "Daocheng", "Kangding → Xinduqiao → Litang → Daocheng"],
+      ["07 Mar", "Yading", "Transfer to Shangri-La Town + Yading scenic area"],
+      ["08 Mar", "Daocheng", "Return to Daocheng + recovery / buffer"],
+      ["09 Mar", "Chengdu", "Long-distance bus Daocheng → Chengdu"],
+      ["10 Mar", "Chongqing", "HSR Chengdu → Chongqing + city night"],
+      ["11 Mar", "Chongqing", "Full city day"],
+      ["12 Mar", "Chengdu", "HSR back + final Chengdu"],
+      ["13 Mar", "Chengdu", "✈ 13:20 → Jakarta"],
+    ],
+    hotels: [["04", "Chengdu"], ["05", "Kangding"], ["06", "Daocheng"], ["07", "Shangri-La Town"], ["08", "Daocheng"], ["09", "Chengdu"], ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"]],
+    budget: [["✈", "Flight", "8.238.000"], ["🚌", "Long bus + train + local", "3.420.000"], ["🎟", "Yading + local transport", "820.000"], ["🏨", "Hotel", "1.450.000"], ["🍜", "Food", "1.400.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.500.000"]],
+    total: "Rp17.078.000",
   },
-  {
-    src: "https://images.unsplash.com/photo-1548919973-5cef591cdbc9?auto=format&fit=crop&w=2200&q=88",
-    label: "CHONGQING / 04",
-    title: "Back to the city",
-    text: "The landscape changes again. Skyscrapers, neon, hotpot and the steep geometry of Chongqing.",
-  },
-];
-
-const days = [
-  ["04 Mar", "Chengdu", "Arrival + city night"],
-  ["05 Mar", "Siguniang", "Chengdu → Siguniang + scenic"],
-  ["06 Mar", "Siguniang → Chengdu", "Full scenic + balik Chengdu"],
-  ["07 Mar", "Jiuzhaigou", "HSR + Jiuzhaigou"],
-  ["08 Mar", "Jiuzhaigou → Chongqing", "Balik + HSR ke Chongqing"],
-  ["09 Mar", "Chongqing", "City"],
-  ["10 Mar", "Wulong", "Day trip"],
-  ["11 Mar", "Chongqing", "City"],
-  ["12 Mar", "Chengdu", "Balik + final Chengdu"],
-  ["13 Mar", "Chengdu", "✈ 13:20 JKT"],
-];
-
-const hotels = [
-  ["04", "Chengdu"], ["05", "Siguniang"], ["06", "Chengdu"],
-  ["07", "Jiuzhaigou"], ["08", "Chongqing"], ["09", "Chongqing"],
-  ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"],
-];
-
-const budget = [
-  ["✈", "Flight", "8.238.000"],
-  ["🚆", "Bus + train + local transport", "2.800.000"],
-  ["🎟", "Attraction", "1.150.000"],
-  ["🏨", "Hotel", "1.250.000"],
-  ["🍜", "Food", "1.350.000"],
-  ["📱", "Internet", "100.000"],
-  ["🧳", "Misc", "150.000"],
-  ["◉", "Buffer", "1.500.000"],
 ];
 
 function useReveal() {
   useEffect(() => {
     const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("is-visible");
-      }),
-      { threshold: 0.16 }
-    );
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("is-visible");
+    }), { threshold: 0.12 });
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
@@ -85,7 +105,9 @@ function useReveal() {
 
 export default function Home() {
   useReveal();
+  const [selectedId, setSelectedId] = useState("siguniang");
   const [progress, setProgress] = useState(0);
+  const selected = options.find((option) => option.id === selectedId) ?? options[0];
 
   useEffect(() => {
     const onScroll = () => {
@@ -98,89 +120,101 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main style={{ "--option-accent": selected.accent } as React.CSSProperties}>
       <div className="progress"><span style={{ transform: `scaleX(${progress})` }} /></div>
 
-      <section className="hero">
-        <div className="hero-image" />
+      <section className="hero group-hero">
+        <div className="hero-image group-photo" />
         <div className="hero-vignette" />
+        <div className="hero-nav"><span>CHINA TRIP 2027</span><span>8 PEOPLE</span><span>04—13 MAR</span></div>
         <div className="hero-copy">
-          <p className="eyebrow">CHINA · 04—13 MAR 2027 · 8 PEOPLE</p>
-          <h1>Siguniang <i>→</i><br />Jiuzhaigou</h1>
-          <p className="hero-sub">A little story about going west, chasing snow, and finding our way back to the city.</p>
+          <p className="eyebrow">EIGHT PEOPLE · THREE ROUTES · ONE TRIP</p>
+          <h1>Where should<br /><i>we go?</i></h1>
+          <p className="hero-sub">Three ways to cross Sichuan. Pick the route, then explore the trip day by day.</p>
         </div>
-        <div className="hero-meta"><span>SCROLL TO EXPLORE</span><ArrowDown size={16} /></div>
+        <div className="hero-meta"><span>SCROLL TO CHOOSE</span><ArrowDown size={16} /></div>
       </section>
 
-      <section className="intro chapter" data-reveal>
-        <p className="eyebrow">THE ROUTE</p>
-        <h2>From city lights<br /><em>to mountain air.</em></h2>
-        <p className="lede">Nine days across Chengdu, Siguniang, Jiuzhaigou, Chongqing and Wulong. The itinerary is the practical part — this page is the memory of how it should feel.</p>
-      </section>
-
-      <section className="photo-story">
-        {photos.map((photo, index) => (
-          <article className="story-photo" key={photo.title} data-reveal>
-            <img src={photo.src} alt="" />
-            <div className="photo-shade" />
-            <div className="photo-caption">
-              <p className="eyebrow">{photo.label}</p>
-              <h2>{photo.title}</h2>
-              <p>{photo.text}</p>
-            </div>
-            <span className="photo-index">0{index + 1}</span>
-          </article>
-        ))}
-      </section>
-
-      <section className="route-section">
-        <div className="route-sticky">
-          <div className="route-copy" data-reveal>
-            <p className="eyebrow">THE JOURNEY</p>
-            <h2>Five places.<br /><em>One moving line.</em></h2>
-            <p>Tap nothing. Just scroll. The route unfolds as the story moves from Chengdu to the mountains, north to Jiuzhaigou, then east to Chongqing.</p>
-          </div>
-          <div className="route-map" data-reveal>
-            <div className="map-grid" />
-            <svg viewBox="0 0 700 620" className="route-svg" aria-label="Stylized route map">
-              <path d="M155 470 C220 390 185 315 270 280 C350 245 310 170 405 145 C475 126 530 175 590 112" />
-              {[['Chengdu',155,470,'01'],['Siguniang',270,280,'02'],['Jiuzhaigou',405,145,'03'],['Chongqing',590,112,'04'],['Wulong',535,230,'05']].map(([name,x,y,n]) => (
-                <g key={name as string}>
-                  <circle cx={x as number} cy={y as number} r="12" className="route-dot" />
-                  <circle cx={x as number} cy={y as number} r="4" className="route-core" />
-                  <text x={(x as number)+20} y={(y as number)+5}>{name as string}</text>
-                  <text x={(x as number)-5} y={(y as number)-20} className="route-number">{n as string}</text>
-                </g>
-              ))}
-            </svg>
-            <div className="map-note"><span>03</span> JIUZHAIGOU</div>
-          </div>
+      <section className="choice-section" id="options">
+        <div className="choice-intro" data-reveal>
+          <p className="eyebrow">THE BIG DECISION</p>
+          <h2>Same people.<br /><em>Different route.</em></h2>
+          <p>We keep Chengdu, Chongqing and the same flight dates. The middle of the trip changes depending on which landscape we want to chase.</p>
         </div>
+
+        <div className="option-grid">
+          {options.map((option, index) => (
+            <button className={`option-card ${selectedId === option.id ? "active" : ""}`} key={option.id} onClick={() => setSelectedId(option.id)} style={{ "--card-accent": option.accent } as React.CSSProperties}>
+              <div className="option-image" style={{ backgroundImage: `url(${option.hero})` }} />
+              <div className="option-overlay" />
+              <span className="option-number">0{index + 1}</span>
+              <div className="option-content">
+                <p>{option.short}</p>
+                <h3>{option.title}</h3>
+                <span>{option.subtitle}</span>
+                <div className="option-bottom"><b>{option.total}</b><span>{selectedId === option.id ? <Check size={16} /> : <ArrowRight size={16} />}</span></div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="selected-hero" data-reveal>
+        <div className="selected-image" style={{ backgroundImage: `url(${selected.hero})` }} />
+        <div className="selected-shade" />
+        <div className="selected-copy">
+          <p className="eyebrow">YOUR SELECTED ROUTE</p>
+          <h2>{selected.title}</h2>
+          <p>{selected.subtitle}</p>
+        </div>
+        <div className="route-pills">{selected.route.map((place) => <span key={place}>{place}</span>)}</div>
       </section>
 
       <section className="details chapter" data-reveal>
-        <div>
-          <p className="eyebrow">DAY BY DAY</p>
-          <h2>The plan,<br /><em>without the clutter.</em></h2>
+        <div className="sticky-detail">
+          <p className="eyebrow">ITINERARY · {selected.short}</p>
+          <h2>Day by day,<br /><em>without the clutter.</em></h2>
+          <p className="detail-note">Select another route above anytime. The itinerary, hotels and budget below update automatically.</p>
         </div>
         <div className="day-table">
-          <div className="table-head"><span>TANGGAL</span><span>LOKASI</span><span>AKTIVITAS</span></div>
-          {days.map(([date, location, activity]) => (
-            <div className="day-row" key={date}><strong>{date}</strong><span>{location}</span><span>{activity}</span></div>
+          <div className="table-head"><span>DATE</span><span>PLACE</span><span>PLAN</span></div>
+          {selected.days.map(([date, location, activity]) => (
+            <div className="day-row" key={`${selected.id}-${date}`}><strong>{date}</strong><span>{location}</span><span>{activity}</span></div>
           ))}
+        </div>
+      </section>
+
+      <section className="route-section" data-reveal>
+        <div className="route-heading"><p className="eyebrow">ROUTE AT A GLANCE</p><h2>One line,<br /><em>many views.</em></h2></div>
+        <div className="route-map">
+          <div className="map-grid" />
+          <svg viewBox="0 0 900 420" className="route-svg" aria-label={`${selected.title} route`}>
+            <path d="M80 300 C180 250 220 315 315 220 C390 145 455 185 540 110 C620 45 690 145 820 90" />
+            {selected.route.map((name, i) => {
+              const points = [[80,300],[220,270],[315,220],[455,165],[610,145],[820,90]];
+              const [x,y] = points[Math.min(i, points.length - 1)];
+              return <g key={name}><circle cx={x} cy={y} r="13" className="route-dot" /><circle cx={x} cy={y} r="4" className="route-core" /><text x={x + 19} y={y + 5}>{name}</text><text x={x - 5} y={y - 21} className="route-number">0{i + 1}</text></g>;
+            })}
+          </svg>
+          <div className="map-note"><span>ROUTE</span>{selected.short}</div>
         </div>
       </section>
 
       <section className="split-section" data-reveal>
         <div className="hotel-card dark-card">
-          <div className="card-label"><BedDouble size={17} /> HOTEL</div>
-          {hotels.map(([day, place]) => <div className="hotel-row" key={day}><span>{day}</span><b>{place}</b></div>)}
+          <div className="card-label"><BedDouble size={17} /> HOTELS</div>
+          {selected.hotels.map(([day, place]) => <div className="hotel-row" key={`${selected.id}-${day}`}><span>{day}</span><b>{place}</b></div>)}
         </div>
         <div className="budget-card">
-          <div className="card-label"><Wallet size={17} /> TARGET / PERSON</div>
-          {budget.map(([icon, label, amount]) => <div className="budget-row" key={label}><span>{icon} {label}</span><b>{amount}</b></div>)}
-          <div className="budget-total"><span>TOTAL</span><strong>Rp16.538.000</strong></div>
+          <div className="card-label"><Wallet size={17} /> TARGET BUDGET / PERSON</div>
+          {selected.budget.map(([icon, label, amount]) => <div className="budget-row" key={`${selected.id}-${label}`}><span>{icon} {label}</span><b>Rp{amount}</b></div>)}
+          <div className="budget-total"><span>TOTAL</span><strong>{selected.total}</strong></div>
         </div>
+      </section>
+
+      <section className="photo-memory" data-reveal>
+        <div className="memory-photo group-photo" />
+        <div className="memory-copy"><p className="eyebrow">THE GROUP</p><h2>Same faces,<br /><em>new views.</em></h2><p>This is the silly part of the trip. Eight people, one mountain background, and absolutely no reason to take ourselves seriously.</p></div>
       </section>
 
       <section className="closing">
@@ -193,7 +227,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer><span>CHINA 2027</span><span>SIGUNIANG → JIUZHAIGOU</span><span>MADE FOR THE GROUP</span></footer>
+      <footer><span>CHINA 2027</span><span>{selected.title.toUpperCase()}</span><span>MADE FOR THE GROUP</span></footer>
     </main>
   );
 }
