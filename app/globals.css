@@ -131,9 +131,9 @@ footer { background:#111; color:#aaa; padding:24px 7vw; display:flex; justify-co
   footer { flex-direction:column; }
 }
 @media(min-width:901px){
-  .hero-copy { top:-8vw; }
+  .hero-copy { top:-10vw; }
 }
 @media(max-width:900px){
-  .hero-copy { top:-14vw; }
+  .hero-copy { top:-16vw; }
 }
 @media(prefers-reduced-motion:reduce){ * { scroll-behavior:auto !important; animation:none !important; transition:none !important; } }
