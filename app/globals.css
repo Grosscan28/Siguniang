@@ -130,4 +130,10 @@ footer { background:#111; color:#aaa; padding:24px 7vw; display:flex; justify-co
   .closing { min-height:90svh; }
   footer { flex-direction:column; }
 }
+@media(min-width:901px){
+  .hero-copy { transform:translateY(-6.5vw); }
+}
+@media(max-width:900px){
+  .hero-copy { transform:translateY(-11vw); }
+}
 @media(prefers-reduced-motion:reduce){ * { scroll-behavior:auto !important; animation:none !important; transition:none !important; } }
