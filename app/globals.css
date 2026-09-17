@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Caveat:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Caveat:wght@500;600&display=swap');
 
 :root { --ink:#111; --paper:#f3f1ea; --muted:#85837c; --line:rgba(17,17,17,.14); --accent:#d9ff63; }
 * { box-sizing:border-box; }
@@ -107,7 +107,7 @@ footer { background:#111; color:#aaa; padding:24px 7vw; display:flex; justify-co
   .hero { padding:24px; min-height:92svh; }
   .hero-nav { left:24px; right:24px; top:20px; }
   .hero-nav span:nth-child(2) { display:none; }
-  .group-photo { background-size:auto 100%; background-position:50% 50%; }
+  .group-photo { background-size:auto 100%; background-position:62% 50%; }
   .hero h1 { font-size:12.5vw; }
   .hero-sub { font-size:14px; max-width:330px; }
   .hero-meta { left:24px; right:auto; bottom:28px; }
