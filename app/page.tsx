@@ -39,8 +39,8 @@ const options: Option[] = [
       ["13 Mar", "Chengdu", "✈ 13:20 → Jakarta"],
     ],
     hotels: [["04", "Chengdu"], ["05", "Siguniang"], ["06", "Chengdu"], ["07", "Jiuzhaigou"], ["08", "Chongqing"], ["09", "Chongqing"], ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"]],
-    budget: [["✈", "Flight", "8.238.000"], ["🚆", "Bus + train + local", "2.800.000"], ["🎟", "Attraction", "1.150.000"], ["🏨", "Hotel", "1.250.000"], ["🍜", "Food", "1.350.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.500.000"]],
-    total: "Rp16.538.000",
+    budget: [["✈", "Flight", "8.238.000"], ["🚆", "Bus + train + local", "2.800.000"], ["🎟", "Attraction", "1.150.000"], ["🏨", "Hotel", "1.250.000"], ["🍜", "Food", "1.350.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.000.000"]],
+    total: "Rp16.038.000",
   },
   {
     id: "bipenggou",
@@ -63,8 +63,8 @@ const options: Option[] = [
       ["13 Mar", "Chengdu", "✈ 13:20 → Jakarta"],
     ],
     hotels: [["04", "Chengdu"], ["05", "Bipenggou / Lixian"], ["06", "Chengdu"], ["07", "Jiuzhaigou"], ["08", "Chongqing"], ["09", "Chongqing"], ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"]],
-    budget: [["✈", "Flight", "8.238.000"], ["🚆", "Bus + train + local", "2.710.000"], ["🎟", "Attraction", "1.060.000"], ["🏨", "Hotel", "1.300.000"], ["🍜", "Food", "1.350.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.500.000"]],
-    total: "Rp16.408.000",
+    budget: [["✈", "Flight", "8.238.000"], ["🚆", "Bus + train + local", "2.710.000"], ["🎟", "Attraction", "1.060.000"], ["🏨", "Hotel", "1.300.000"], ["🍜", "Food", "1.350.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.000.000"]],
+    total: "Rp15.908.000",
   },
   {
     id: "yading",
@@ -87,8 +87,8 @@ const options: Option[] = [
       ["13 Mar", "Chengdu", "✈ 13:20 → Jakarta"],
     ],
     hotels: [["04", "Chengdu"], ["05", "Kangding"], ["06", "Daocheng"], ["07", "Shangri-La Town"], ["08", "Daocheng"], ["09", "Chengdu"], ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"]],
-    budget: [["✈", "Flight", "8.238.000"], ["🚌", "Long bus + train + local", "3.420.000"], ["🎟", "Yading + local transport", "820.000"], ["🏨", "Hotel", "1.450.000"], ["🍜", "Food", "1.400.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.500.000"]],
-    total: "Rp17.078.000",
+    budget: [["✈", "Flight", "8.238.000"], ["🚌", "Long bus + train + local", "3.420.000"], ["🎟", "Yading + local transport", "820.000"], ["🏨", "Hotel", "1.450.000"], ["🍜", "Food", "1.400.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.000.000"]],
+    total: "Rp16.578.000",
   {
     id: "bipenggou-dagu",
     title: "Bipenggou → Dagu → Siguniang",
@@ -122,9 +122,9 @@ const options: Option[] = [
       ["🐼", "Panda Base", "127.000"],
       ["🍜", "Food · 9 days", "1.050.000"],
       ["🧾", "Misc", "400.000"],
-      ["◉", "Buffer", "1.500.000"]
+      ["◉", "Buffer", "1.000.000"]
     ],
-    total: "Rp16.346.000",
+    total: "Rp15.846.000",
   },
   },
 ];
