@@ -89,6 +89,7 @@ const options: Option[] = [
     hotels: [["04", "Chengdu"], ["05", "Kangding"], ["06", "Daocheng"], ["07", "Shangri-La Town"], ["08", "Daocheng"], ["09", "Chengdu"], ["10", "Chongqing"], ["11", "Chongqing"], ["12", "Chengdu"]],
     budget: [["✈", "Flight", "8.238.000"], ["🚌", "Long bus + train + local", "3.420.000"], ["🎟", "Yading + local transport", "820.000"], ["🏨", "Hotel", "1.450.000"], ["🍜", "Food", "1.400.000"], ["📱", "Internet", "100.000"], ["🧳", "Misc", "150.000"], ["◉", "Buffer", "1.000.000"]],
     total: "Rp16.578.000",
+  },
   {
     id: "bipenggou-dagu",
     title: "Bipenggou → Dagu → Siguniang",
@@ -125,7 +126,6 @@ const options: Option[] = [
       ["◉", "Buffer", "1.000.000"]
     ],
     total: "Rp15.846.000",
-  },
   },
 ];
 
@@ -165,9 +165,9 @@ export default function Home() {
         <div className="hero-vignette" />
         <div className="hero-nav"><span>CHINA TRIP 2027</span><span>8 PEOPLE</span><span>04—13 MAR</span></div>
         <div className="hero-copy">
-          <p className="eyebrow">EIGHT PEOPLE · THREE ROUTES · ONE TRIP</p>
+          <p className="eyebrow">EIGHT PEOPLE · FOUR ROUTES · ONE TRIP</p>
           <h1>Where should<br /><i>we go?</i></h1>
-          <p className="hero-sub">Three ways to cross Sichuan. Pick the route, then explore the trip day by day.</p>
+          <p className="hero-sub">Four ways to cross Sichuan. Pick the route, then explore the trip day by day.</p>
         </div>
         <div className="hero-meta"><span>SCROLL TO CHOOSE</span><ArrowDown size={16} /></div>
       </section>
