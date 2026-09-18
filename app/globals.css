@@ -24,7 +24,7 @@ button { font:inherit; }
 .choice-intro h2,.details h2,.route-heading h2,.memory-copy h2 { margin:0; font-size:clamp(52px,7.2vw,112px); line-height:.9; letter-spacing:-.06em; font-weight:500; }
 .choice-intro h2 em,.details h2 em,.route-heading h2 em,.memory-copy h2 em { font-family:'Playfair Display',serif; font-weight:500; }
 .choice-intro > p:last-child { max-width:470px; margin:0; color:#62615b; line-height:1.7; font-size:17px; }
-.option-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.option-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
 .option-card { position:relative; min-height:520px; overflow:hidden; border:0; padding:0; text-align:left; color:#fff; cursor:pointer; background:#161616; isolation:isolate; }
 .option-card:after { content:''; position:absolute; inset:0; border:1px solid rgba(255,255,255,.18); z-index:4; pointer-events:none; }
 .option-image { position:absolute; inset:0; background-size:cover; background-position:center; transition:transform 1.2s cubic-bezier(.2,.8,.2,1); }
